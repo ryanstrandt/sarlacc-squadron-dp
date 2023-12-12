@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "sarlacc-squadron-dp",
+    "slug": "sarlacc-squadron-dp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "sarlacc-squadron-dp"
+}
