@@ -2,35 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+// import {
+//   createBrowserRouter,
+//   RouterProvider,
+// } from "react-router-dom";
 import store from './store'
 import { Provider } from 'react-redux'
 
 import reportWebVitals from './reportWebVitals';
-import CharacterInfo from './components/CharacterInfo';
-import DatapadFunctions from './components/DatapadFunctions';
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        path: "/character", element: <CharacterInfo />
-      },
-      {path: "/functions", element: <DatapadFunctions />}
-    ]
-  },
-]);
+// import CharacterInfo from './components/CharacterInfo';
+// import DatapadFunctions from './components/DatapadFunctions';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} store={store} />
+      <App store={store} />
     </Provider>
   </React.StrictMode>
 );
