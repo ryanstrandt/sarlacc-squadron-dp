@@ -16,17 +16,20 @@ import {
   useAsyncError,
   useAsyncValue,
   useFetcher,
-  useFetchers,
   useLoaderData,
   useNavigation,
   useParams,
-  useRevalidator,
   useRouteError,
 } from "react-router-dom";
 import './App.css';
 
 import Grid from '@mui/material/Grid';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import MenuIcon from '@mui/icons-material/Menu';
+
 
 import CharacterInfo from './components/CharacterInfo';
 import DatapadFunctions from './components/DatapadFunctions';
@@ -89,25 +92,25 @@ export function Fallback() {
 
 // Layout
 export function Layout() {
-  let navigation = useNavigation();
-  let revalidator = useRevalidator();
-  let fetchers = useFetchers();
-  let fetcherInProgress = fetchers.some((f) =>
-    ["loading", "submitting"].includes(f.state)
-  );
+  // let navigation = useNavigation();
+  // let revalidator = useRevalidator();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  // let fetchers = useFetchers();
+  // let fetcherInProgress = fetchers.some((f) =>
+  //   ["loading", "submitting"].includes(f.state)
+  // );
 
   return (
     <>
-      <h1>Data Router Example</h1>
-
-      <p>
-        This example demonstrates some of the core features of React Router
-        including nested &lt;Route&gt;s, &lt;Outlet&gt;s, &lt;Link&gt;s, and
-        using a "*" route (aka "splat route") to render a "not found" page when
-        someone visits an unrecognized URL.
-      </p>
-
-      <nav>
+      {/* <nav>
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -127,32 +130,59 @@ export function Layout() {
             </button>
           </li>
         </ul>
-      </nav>
-      <div style={{ position: "fixed", top: 0, right: 0 }}>
+      </nav> */}
+      {/* <div style={{ position: "fixed", top: 0, right: 0 }}>
         {navigation.state !== "idle" && <p>Navigation in progress...</p>}
         {revalidator.state !== "idle" && <p>Revalidation in progress...</p>}
         {fetcherInProgress && <p>Fetcher in progress...</p>}
-      </div>
-      <p>
-        Click on over to <Link to="/todos">/todos</Link> and check out these
-        data loading APIs!
-      </p>
-      <p>
-        Or, checkout <Link to="/deferred">/deferred</Link> to see how to
-        separate critical and lazily loaded data in your loaders.
-      </p>
-      <p>
-        We've introduced some fake async-aspects of routing here, so Keep an eye
-        on the top-right hand corner to see when we're actively navigating.
-      </p>
+      </div> */}
       <hr />
       <ThemeProvider theme={theme}>
+      <h1>Data Router Example</h1>
+
+      <Button
+        id="basic-button"
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+      >
+        <MenuIcon />
+      </Button>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+                    <Link to="/">Home</Link>
+
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={handleClose}>Logout</MenuItem>
+      </Menu>
+
+        {/* <Box sx={{ pb: 7 }} ref={ref}>
+        <CssBaseline />
+      <List>
+        {messages.map(({ primary, secondary, person }, index) => (
+          <ListItemButton key={index + person}>
+            <ListItemAvatar>
+              <Avatar alt="Profile Picture" src={person} />
+            </ListItemAvatar>
+            <ListItemText primary={primary} secondary={secondary} />
+          </ListItemButton>
+        ))}
+      </List> */}
         <Grid container
           spacing={0}
           direction="column"
           alignItems="center"
           justifyContent="center"
-          sx={{backgroundColor: "primary.main", minHeight: '100vh' }}
+          sx={{backgroundColor: "primary.main", height: '100vh' }}
         >
           <Grid item xs={3}>
             <Outlet />
