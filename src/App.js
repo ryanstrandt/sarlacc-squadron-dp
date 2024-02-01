@@ -29,6 +29,8 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
+import Paper from '@mui/material/Paper';
+
 
 
 import CharacterInfo from './components/CharacterInfo';
@@ -109,7 +111,7 @@ export function Layout() {
   // );
 
   return (
-    <>
+    <Paper sx={{backgroundColor:"#676767"}}>
       {/* <nav>
         <ul>
           <li>
@@ -182,7 +184,14 @@ export function Layout() {
           direction="column"
           alignItems="center"
           justifyContent="center"
-          sx={{backgroundColor: "primary.main", height: '100vh' }}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100vh',
+          }}
+    
         >
           <Grid item xs={3}>
             <Outlet />
@@ -190,7 +199,7 @@ export function Layout() {
           </Grid>
         </Grid>
       </ThemeProvider>
-    </>
+    </Paper>
   );
 }
 

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+// import FavoriteIcon from '@mui/icons-material/Favorite';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import Paper from '@mui/material/Paper';
 
@@ -50,7 +50,8 @@ const MainNavigation = () => {
           }}
         >
           <BottomNavigationAction component={LinkBehavior} label="Recents" icon={<RestoreIcon />} to="/characters" />
-          <BottomNavigationAction component={LinkBehavior} label="Favorites" icon={<FavoriteIcon />} to="/functions" />
+          <BottomNavigationAction component={LinkBehavior} label="Jobs" icon={<img src="/Wallet.png" alt="wallet" width="25%" />
+} to="/functions" />
           <BottomNavigationAction component={LinkBehavior} label="Archive" icon={<ArchiveIcon />} />
         </BottomNavigation>
       </Paper>
